@@ -43,6 +43,8 @@ Orchestrator Summary
 - Next.js App Router (pages, layouts, client/server components)
 - Accessibility: WCAG, ARIA roles, keyboard-only navigation
 - Responsive layout with rem/em units (no fixed px dimensions)
+- shadcn/ui + Radix primitives (slider, dialog, tabs, progress, badge, tooltip)
+- Test query scoping: use `within(toolbar)` / `within(section)` when shell and game render the same text
 
 **Folder access (exclusive):** `/app`, `/components`
 
@@ -153,6 +155,8 @@ Orchestrator Summary
 - Break the request into independent subtasks, one per subagent.
 - Assign each only to its scoped folders and skills.
 - Skip agents not relevant to the request (e.g., no audio changes → no Audio subagent).
+- Batch config-only files (package.json, tsconfig, tailwind, next.config, vitest.config) into a single parallel step — do not write them sequentially.
+- Before writing framework config files, verify the installed framework version supports the chosen format (e.g., Next.js 14 does NOT support `next.config.ts` — use `.mjs`/`.js`).
 
 ### 3. Parallel Spawn
 - Spawn all relevant subagents via `new_task` in parallel.
@@ -164,6 +168,7 @@ Orchestrator Summary
 ### 4. QA Gate
 - After all workers complete, spawn the QA subagent to validate every deliverable.
 - QA runs `npx vitest run` — all tests must pass before completion.
+- QA ALSO runs `npx tsc --noEmit` — type errors must be zero before declaring the build ready (catches issues like iterator spread on Map, missing module types).
 - QA also verifies: audio cleanup, accessibility fallbacks, persistence via platform abstraction, rem/em (no px) in layout.
 
 ### 5. Completion
