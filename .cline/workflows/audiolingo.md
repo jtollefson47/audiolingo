@@ -86,6 +86,7 @@ Orchestrator Summary
 - Node lifecycle management (connect/disconnect, leak prevention)
 - `AudioContext.suspend()`/`resume()` battery management
 - Browser autoplay policy compliance
+- CRITICAL: Before using ANY Tone.js class or method, verify its real signature by reading `node_modules/tone/build/esm/**/*.d.ts`. Never assume API shape from docs or memory — the installed version's actual types are the source of truth.
 
 **Folder access (exclusive):** `/lib` (audio files only: `audio*.ts`, `worklets/`), `/hooks` (audio hooks only: `useAudio*.ts`)
 
@@ -164,6 +165,7 @@ Orchestrator Summary
   - Exact file paths within its folder scope
   - Its role-specific skills as context
   - A clear, verifiable deliverable
+- After ANY scaffolding tool runs (shadcn init, create-next-app, etc.), immediately run `npx tsc --noEmit` before proceeding — scaffolding tools can inject incompatible code for the installed framework version.
 
 ### 4. QA Gate
 - After all workers complete, spawn the QA subagent to validate every deliverable.

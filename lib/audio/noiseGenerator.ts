@@ -22,7 +22,11 @@ export class NoiseGenerator {
     this.noise = new Tone.Noise(type);
     this.gain = new Tone.Gain(volume);
     this.noise.connect(this.gain);
-    this.gain.toDestination();
+  }
+
+  /** Get the output node for chaining into effects (e.g., a Compressor). */
+  getOutput(): Tone.Gain {
+    return this.gain;
   }
 
   /** Start the noise source. Must be preceded by a user gesture. */

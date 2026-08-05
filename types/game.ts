@@ -61,6 +61,12 @@ export interface ScoringInput {
   timeSeconds?: number;
   /** Difficulty the game was played at. */
   difficulty: DifficultyLevel;
+  /**
+   * Optional per-parameter normalized deviations (0 = perfect match,
+   * 1 = worst possible). Used by parametric "match-the-setting" games
+   * like Compression Match / EQ Match to score slider closeness.
+   */
+  paramDeviations?: number[];
 }
 
 /** Result of a game's scoring function. */

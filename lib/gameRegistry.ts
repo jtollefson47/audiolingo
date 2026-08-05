@@ -1,5 +1,6 @@
 import type { GamePlugin } from "@/types/game";
 import { exampleGame } from "@/games/example";
+import { compressionMatchGame } from "@/games/compression-match";
 
 /**
  * The plugin registry. Maps a game slug to its GamePlugin.
@@ -27,3 +28,4 @@ export function getAllGames(): GamePlugin[] {
 
 // Register all built-in games here.
 registerGame(exampleGame);
+registerGame(compressionMatchGame);

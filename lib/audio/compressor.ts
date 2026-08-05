@@ -62,6 +62,15 @@ export class Compressor {
     this.comp.knee.value = db;
   }
 
+  /** Set all parameter values at once. */
+  setParams(params: CompressorParams): void {
+    if (params.threshold !== undefined) this.setThreshold(params.threshold);
+    if (params.ratio !== undefined) this.setRatio(params.ratio);
+    if (params.attack !== undefined) this.setAttack(params.attack);
+    if (params.release !== undefined) this.setRelease(params.release);
+    if (params.knee !== undefined) this.setKnee(params.knee);
+  }
+
   /** Get the current parameter values. */
   getParams(): Required<CompressorParams> {
     return {
